@@ -1,0 +1,32 @@
+Requerimientos Especificos
+
+Requisitos de Interface externa.
+
+
+
+Requisitos de Interface con el usuario
+
+Requisitos de Interface con el HW
+
+Requisitos de Interface con el SW
+
+Requisitos de Interface de comunicaciones
+
+Requerimientos Funcionales.
+
+	Fluido de Informacion
+
+	Descripcion del Proceso
+
+
+
+
+Plataforma(s):
+Android (JellyBean 4.1 - 4.2)(Api 16+)
+
+La interface sera diseñada para las 5 resoluciones.
+
+Prorrateo de requerimientos:
+
+Plataformas:
+Web

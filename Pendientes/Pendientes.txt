@@ -1,0 +1,7 @@
+http://realm.io/
+http://developer.android.com/training/volley/index.html
+https://developer.android.com/design/material/index.html
+http://es.wikipedia.org/wiki/Ley_Federal_de_Protecci%C3%B3n_de_Datos_Personales
+https://www.owasp.org/index.php/Main_Page
+https://www.owasp.org/index.php/Category:OWASP_Security_Analysis_of_Core_J2EE_Design_Patterns_Project
+https://glassfish.java.net/hol/javaee7-hol.pdf
