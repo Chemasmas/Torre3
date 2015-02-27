@@ -52,6 +52,26 @@ public class TestParam {
     public String Login(@FormParam("usr") String usr,
                         @FormParam("pwd") String pwd)
     {
+        System.out.println("Alguien se Conecto con "+usr+" y "+pwd);
         return "{usr :'"+usr+"' , pwd: '"+pwd+"' }";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
