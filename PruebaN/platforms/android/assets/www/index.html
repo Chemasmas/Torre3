@@ -8,26 +8,79 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="js/libs/jquery-mobile/jquery.mobile-1.4.5.css" />
-        <title>Hello World</title>
+        <title>Torre III</title>
     </head>
     <body>
-        <div data-role="page">
-            <div data-role="header">Encbezado</div>
-            <form id="loginForm" name="loginForm">
-                <input type="text" id="usrL">
-                <input type="password" id="pwdL">
-                <input type="submit" value="Enviar">
-            </form>
+        <!--
+        <div data-role="page" id="principal" name="principal">
+            <div data-role="header"><h3>Torre III</h3></div>
+            <div data-role="content">
+                <form id="loginForm" name="loginForm">
+                    <label for="text">user</label>
+                    <input type="text" id="usrL">
+                    <label for="password">password</label>
+                    <input type="password" id="pwdL">
+                    <input type="submit" value="Enviar" href="#registerPage1">
+                    <!--<a data-role="button" href="#registerPage1">submit</a>-->
+                </form>
+            </div>
             <div data-role="footer">
-                <div id="destino"></div>
             </div>
         </div>
+        -->
+        <div data-role="page" id="registerPage1" name="registerPage1">
+            <div data-role="header">
+                <h3>Parte 1</h3>
+                <a class="ui-btn-right showNextPage">Next</a>
+            </div>
+            <div data-role="content">
+                <form id="registerForm1" name="registerForm1">
+                <label for="text">nombre completo</label>
+                <input type="text" id="nombreRegister">
+                <label for="text">Matricula</label>
+                <input type="text" id="matriculaRegister">
+                <label for="text">Habilidades</label>
+                <input type="text" id="habilidadesRegister">
+                <label for="text">Servicios</label>
+                <input type="text" id="serviciosRegister">
+                <label for="text">Conocimientos</label>
+                <input type="text" id="conocimientosRegister">
+                <label for="text">Intereses</label>
+                <input type="text" id="interesesRegister">
+                </form>
+            </div>
+            <div data-role="footer">
+            </div>
+            
+        </div>
+
+        <div data-role="page" id="registerPage2" name="registerPage2">
+            <div data-role="header">
+                <h3>Parte 2</h3>
+                <a class="ui-btn-left showPrevPage">Back</a>
+                <a class="ui-btn-right showNextPage">Finish</a>
+            </div>
+            <div data-role="content">
+            <form id="registerForm2" name="registernForm2">
+                <label for="text">proyectos previos</label>
+                <input type="text" id="proyectosPreviosRegister">
+                <label for="text">proyectos actuales</label>
+                <input type="text" id="proyectosActualesRegister">
+                <label for="text">correo electronico</label>
+                <input type="text" id="correoRegister">
+                <label for="text">telefono movil</label>
+                <input type="text" id="celularRegister">
+                
+                <input type="submit" value="Enviar">
+            </form>
+            </div>
+        </div>
+    
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
         <script type="text/javascript" src="js/libs/jquery-mobile/jquery.mobile-1.4.5.js "></script>
         <script type="text/javascript" src="js/peticiones.js"></script>
-        
-        
     </body>
 </html>
