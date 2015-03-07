@@ -7,6 +7,7 @@ $( "#loginForm" ).on( "submit", function( event ) {
   var pwdL=$("#pwdL").val();
   var res=$.post( url, {usr : usrL, pwd : pwdL });
     console.log(usrL+" "+pwdL);
+    $.mobile.changePage("#registerPage1");
 });
 
 $( "#registerForm2" ).on( "submit", function( event ) {
