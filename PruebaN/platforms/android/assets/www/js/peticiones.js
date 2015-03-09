@@ -4,23 +4,11 @@ var urlRegister="https://torre3uam.herokuapp.com/usuario/register";
 $( "#loginForm" ).on( "submit", function( event ) {
   event.preventDefault();
   var usrL=$("#usrL").val();
-  var pwdL=$("#pwdL").val();    
-    
-    $.ajax({
-        type       : "POST",
-        url        : url,
-        data       : {usr : usrL, pwd : pwdL },
-        success    : function(response) {
-            console.log(response);
-            console.log("funcion succes");
-        },
-        dataType: "json"
-    });
-$.mobile.changePage("#registerPage1");
+  var pwdL=$("#pwdL").val();
+  var res=$.post( url, {usr : usrL, pwd : pwdL });
+    console.log(usrL+" "+pwdL);
+    $.mobile.changePage("#registerPage1");
 });
-
-//{usr : usrL, pwd : pwdL }
- 
 
 $( "#registerForm2" ).on( "submit", function( event ) {
   event.preventDefault();
