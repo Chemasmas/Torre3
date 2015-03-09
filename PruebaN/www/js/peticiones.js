@@ -18,13 +18,9 @@ $( "#loginForm" ).on( "submit", function( event ) {
     });
 $.mobile.changePage("#registerPage1");
 });
-
-//{usr : usrL, pwd : pwdL }
- 
-
-$( "#registerForm2" ).on( "submit", function( event ) {
+$( "#registernForm4" ).on( "submit", function( event ) {
   event.preventDefault();
-  var nombreV=$("#nombreRegister").val();
+    var nombreV=$("#nombreRegister").val();
     var matriculaV=$("#matriculaRegister").val();
     var habilidadesV=$("#habilidadesRegister").val();
     var serviciosV=$("#serviciosRegister").val();
@@ -39,16 +35,18 @@ $( "#registerForm2" ).on( "submit", function( event ) {
     var res=$.post( urlRegister, {nombre : nombreV, matricula : matriculaV,habilidades:habilidadesV,
         servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
             celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
-
+  
+$.mobile.changePage("#mainMenu");
 });
-
+//{usr : usrL, pwd : pwdL }
+ 
 $(window).on("navigate", function(event, data) {
   var direction = data.state.direction;
   if (direction == 'back') {
-    alert('Going back');
+    console.log('Going back');
   }
   if (direction == 'forward') {
-    alert('Going forward');
+    console.log('Going forward');
   }
 });
 
@@ -56,10 +54,34 @@ $("#registerPage1").on('click', '.showNextPage', function() {
   $.mobile.navigate("#registerPage2", {
     transition: "slide"
   });
-    var nombre=$("#nombreRegister").val();
+});
+$("#registerPage1").on('click', '.showPrevPage', function() {
+  $.mobile.navigate("#principal", {
+    transition: "slide"
+  });
 });
 $("#registerPage2").on('click', '.showNextPage', function() {
+  $.mobile.navigate("#registerPage3", {
+    transition: "slide"
+  });
+});
+$("#registerPage2").on('click', '.showPrevPage', function() {
   $.mobile.navigate("#registerPage1", {
+    transition: "slide"
+  });
+});
+$("#registerPage3").on('click', '.showNextPage', function() {
+  $.mobile.navigate("#registerPage4", {
+    transition: "slide"
+  });
+});
+$("#registerPage3").on('click', '.showPrevPage', function() {
+  $.mobile.navigate("#registerPage2", {
+    transition: "slide"
+  });
+});
+$("#registerPage4").on('click', '.showNextPage', function() {
+  $.mobile.navigate("#mainMenu", {
     transition: "slide"
   });
     var nombreV=$("#nombreRegister").val();
@@ -78,11 +100,8 @@ $("#registerPage2").on('click', '.showNextPage', function() {
         servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
             celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
 });
-
-
-$("#registerPage2").on('click', '.showPrevPage', function() {
-  $.mobile.navigate("#registerPage1", {
+$("#registerPage4").on('click', '.showPrevPage', function() {
+  $.mobile.navigate("#registerPage3", {
     transition: "slide"
   });
-    var nombre=$("#nombreRegister").val();
 });

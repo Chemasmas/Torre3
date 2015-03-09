@@ -16,35 +16,41 @@
             <div data-role="content">
                 <form id="loginForm" name="loginForm" >
                     <label for="text">user</label>
-                    <input type="text" id="usrL" data-theme="c">
+                    <input type="text" id="usrL" data-theme="c" required>
                     <label for="password">password</label>
-                    <input type="password" id="pwdL" data-theme="c">
-                    <input type="submit" value="Enviar" data-theme="b">
-                    <!--<a data-role="button" href="#registerPage1">submit</a>-->
+                    <input type="password" id="pwdL" data-theme="c" required>
+                    <input type="submit" value="Enviar" data-theme="b" >
+                    <a href="#registerPage1">registrar</a>
                 </form>
             </div>
             <div data-role="footer">
             </div>
         </div>
-        <div data-role="page" id="registerPage1" name="registerPage1">
-            <div data-role="header">
-                <h3>Parte 1</h3>
-                <a class="ui-btn-right showNextPage">Next</a>
+        <div data-role="page" id="registerPage1" name="registerPage1" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Datos generales</h3>
+                <a class="ui-btn-left showPrevPage" data-theme="b">Back</a>
+                <a class="ui-btn-right showNextPage" data-theme="b">Next</a>
             </div>
             <div data-role="content">
-                <form id="registerForm1" name="registerForm1">
+                <form name="registerForm1" method="post">
                 <label for="text">nombre completo</label>
-                <input type="text" id="nombreRegister">
+                <input type="text" id="nombreRegister" required>
+                    
                 <label for="text">Matricula</label>
-                <input type="text" id="matriculaRegister">
-                <label for="text">Habilidades</label>
-                <input type="text" id="habilidadesRegister">
-                <label for="text">Servicios</label>
-                <input type="text" id="serviciosRegister">
-                <label for="text">Conocimientos</label>
-                <input type="text" id="conocimientosRegister">
-                <label for="text">Intereses</label>
-                <input type="text" id="interesesRegister">
+                <input type="tel" id="matriculaRegister" required>
+                    
+                <label for="text">telefono movil</label>
+                <input type="tel" id="celularRegister">
+                    
+                <label for="text">correo electronico</label>
+                <input type="email" id="correoRegister" required>
+                    
+                <label for="text">usuario</label>
+                <input type="text" id="usuarioRegister" required>
+                    
+                <label for="text">Password</label>
+                <input type="password" id="passwordRegister" required>
                 </form>
             </div>
             <div data-role="footer">
@@ -52,29 +58,95 @@
             
         </div>
 
-        <div data-role="page" id="registerPage2" name="registerPage2">
-            <div data-role="header">
-                <h3>Parte 2</h3>
-                <a class="ui-btn-left showPrevPage">Back</a>
-                <a class="ui-btn-right showNextPage">Finish</a>
+        <div data-role="page" id="registerPage2" name="registerPage2" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Resumen</h3>
+                <a class="ui-btn-left showPrevPage" data-theme="b">Back</a>
+                <a class="ui-btn-right showNextPage" data-theme="b">Next</a>
             </div>
             <div data-role="content">
             <form id="registerForm2" name="registernForm2">
-                <label for="text">proyectos previos</label>
-                <input type="text" id="proyectosPreviosRegister">
-                <label for="text">proyectos actuales</label>
-                <input type="text" id="proyectosActualesRegister">
-                <label for="text">correo electronico</label>
-                <input type="text" id="correoRegister">
-                <label for="text">telefono movil</label>
-                <input type="text" id="celularRegister">
-                
-                <input type="submit" value="Enviar">
+                <label for="tel">Habilidades</label>
+                <textarea rows="6" cols="5" id="habilidadesRegister"></textarea>
+                <label for="text">Servicios</label>
+                <textarea rows="6" cols="5" id="serviciosRegister"></textarea>
+                <label for="text">Conocimientos</label>
+                <textarea rows="6" cols="5" id="conocimientosRegister"></textarea>
+                <label for="text">Intereses</label>
+                <textarea rows="6" cols="5" id="interesesRegister"></textarea>
+            </form>
+            </div>
+        </div>
+        
+        <div data-role="page" id="registerPage3" name="registerPage3" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Proyectos</h3>
+                <a class="ui-btn-left showPrevPage" data-theme="b">Back</a>
+                <a class="ui-btn-right showNextPage" data-theme="b">Next</a>
+            </div>
+            <div data-role="content">
+            <form id="registerForm3" name="registernForm3">
+                <label for="textarea">proyectos previos</label>
+                <textarea rows="6" cols="5" id="proyectosPreviosRegister"></textarea>
+                <label for="textarea">proyectos actuales</label>
+                <textarea rows="6" cols="5" id="proyectosActualesRegister"></textarea>
+            </form>
+            </div>
+        </div>
+        
+        <div data-role="page" id="registerPage4" name="registerPage4" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Avatar</h3>
+                <a class="ui-btn-left showPrevPage" data-theme="b">Back</a>
+                <a class="ui-btn-right showNextPage" data-theme="b">Finish</a>
+            </div>
+            <div data-role="content">
+            <form id="registernForm4" name="registernForm4">
+                <label for="select">Cabeza</label>
+                <select name="cabezaSelect">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <label for="select">Torso</label>
+                <select name="torsoSelect">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <label for="select">Piernas</label>
+                <select name="piernasSelect">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <label for="select">Pies</label>
+                <select name="piesSelect">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <input type="submit" value="Enviar" data-theme="b" >
             </form>
             </div>
         </div>
     
-
+        <div data-role="page" id="mainMenu" name="mainMenu" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Torre III</h3>
+            </div>
+            <div data-role="content">
+            <div name="mainImg"></div>
+            <a href="#registerPage1" data-role="button" name="menuEditarPerfil">Editar perfil</a>
+            <a href="#registerPage4" data-role="button" name="menuEditarPerfil">Editar avatar</a>
+            <a href="#principal" data-role="button" name="menuEditarPerfil">Ir a campus</a>
+            <a href="#principal" data-role="button" name="menuEditarPerfil">Salir</a>
+            </div>
+        </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
