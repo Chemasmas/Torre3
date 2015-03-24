@@ -6,21 +6,35 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
         <link rel="stylesheet" type="text/css" href="js/libs/jquery-mobile/jquery.mobile-1.4.5.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/estilos.css">
+        <script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/peticiones.js"></script>
         <title>Torre III</title>
     </head>
+    
     <body>
         <div data-role="page" id="principal" name="principal" data-theme="a">
             <div data-role="header" data-theme="b"><h3>Torre III</h3></div>
             <div data-role="content">
-                <form id="loginForm" name="loginForm" >
-                    <label for="text">user</label>
-                    <input type="text" id="usrL" data-theme="c" required>
-                    <label for="password">password</label>
-                    <input type="password" id="pwdL" data-theme="c" required>
+                <form id="loginForm" name="loginForm">
+                    <label for="text">User</label>
+                    <input type="text" id="usrL" data-theme="c" />
+                    <label for="password">Password</label>
+                    <input type="password" id="pwdL" data-theme="c" />
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <input type="checkbox" name="noCerrarLogin" id="noCerrarLogin"/>
+                            <label for="noCerrarLogin">No cerrar sesion</label>
+                        </fieldset>
+                    </div>
+                    <label for="submit" id="letreroLogin" style="color:red;font-weight:bold;"></label>
+                    <!--<button onclick="myFunction()">Try it</button>-->
                     <input type="submit" value="Enviar" data-theme="b" >
-                    <a href="#registerPage1">registrar</a>
+                    <a href="#registerPage1">Registrar</a>
                 </form>
             </div>
             <div data-role="footer">
@@ -33,24 +47,33 @@
                 <a class="ui-btn-right showNextPage" data-theme="b">Next</a>
             </div>
             <div data-role="content">
-                <form name="registerForm1" method="post">
-                <label for="text">nombre completo</label>
-                <input type="text" id="nombreRegister" required>
+                <form name="registerForm1" >
+                <label  id="letreroForm1" style="color:red;font-weight:bold;"></label>
+                
+                <label for="text">Nombres</label>
+                <input type="text" id="nombreRegister">
+                    
+                <label for="apellidoRegister">Apellidos</label>
+                <input type="text" id="apellidoRegister">
                     
                 <label for="text">Matricula</label>
-                <input type="tel" id="matriculaRegister" required>
+                <input type="tel" id="matriculaRegister">
                     
-                <label for="text">telefono movil</label>
+                <label for="licenciaturaRegister">Licenciatura</label>
+                <input type="text" id="licenciaturaRegister">
+                    
+                <label for="text">Telefono movil</label>
                 <input type="tel" id="celularRegister">
                     
-                <label for="text">correo electronico</label>
-                <input type="email" id="correoRegister" required>
+                <label for="text">Correo electronico</label>
+                <input type="email" id="correoRegister">
                     
-                <label for="text">usuario</label>
-                <input type="text" id="usuarioRegister" required>
+                <label for="text">Usuario</label>
+                <input type="text" id="usuarioRegister">
                     
                 <label for="text">Password</label>
-                <input type="password" id="passwordRegister" required>
+                <input type="password" id="passwordRegister">
+
                 </form>
             </div>
             <div data-role="footer">
@@ -66,6 +89,7 @@
             </div>
             <div data-role="content">
             <form id="registerForm2" name="registernForm2">
+                <label  id="letreroForm2" style="color:red;font-weight:bold;"></label>
                 <label for="tel">Habilidades</label>
                 <textarea rows="6" cols="5" id="habilidadesRegister"></textarea>
                 <label for="text">Servicios</label>
@@ -85,10 +109,11 @@
                 <a class="ui-btn-right showNextPage" data-theme="b">Next</a>
             </div>
             <div data-role="content">
-            <form id="registerForm3" name="registernForm3">
-                <label for="textarea">proyectos previos</label>
+            <form id="registerForm3">
+                <label  id="letreroForm3" style="color:red;font-weight:bold;"></label>
+                <label for="textarea">Proyectos previos</label>
                 <textarea rows="6" cols="5" id="proyectosPreviosRegister"></textarea>
-                <label for="textarea">proyectos actuales</label>
+                <label for="textarea">Proyectos actuales</label>
                 <textarea rows="6" cols="5" id="proyectosActualesRegister"></textarea>
             </form>
             </div>
@@ -143,14 +168,53 @@
             <div name="mainImg"></div>
             <a href="#registerPage1" data-role="button" name="menuEditarPerfil">Editar perfil</a>
             <a href="#registerPage4" data-role="button" name="menuEditarPerfil">Editar avatar</a>
-            <a href="#principal" data-role="button" name="menuEditarPerfil">Ir a campus</a>
+            <a href="#edificio" data-role="button" name="menuEditarPerfil">Ir a campus</a>
             <a href="#principal" data-role="button" name="menuEditarPerfil">Salir</a>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
+        
+        <div data-role="page" id="edificio" name="edificio">
+            <div data-role="content" id="edificioBody">
+                <header>
+                    <div class="menu_bar">
+                    <a href="#" class="bt_menu"><span class="icon-books"></span>Menu</a>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#mainMenu"><span class="icon-home3"></span>Menu</a></li>
+                            <li><a href="#crearAnuncio"><span class="icon-office"></span>Crear anuncio</a></li>
+                            <li><a href="#"><span class="icon-books"></span>Ver anuncios</a></li>
+                            <li><a href="#principal"><span class="icon-phone"></span>Salir</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div id="contenido">
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="crearAnuncio" data-theme="a">
+            <div data-role="header" data-theme="a">
+                <h3>Crear anuncio</h3>
+                <a class="ui-btn-left showPrevPage" data-theme="b">Back</a>
+                <a class="ui-btn-right showNextPage" data-theme="b">Publicar</a>
+            </div>
+            <div data-role="content">
+                <form name="crearForm" >
+                <label  id="letreroCrear" style="color:red"></label>
+                <label for="tituloCrear">Titulo</label>
+                <input type="text" id="tituloCrear">
+                <label for="contenidoCrear">Contenido</label>
+                <textarea rows="6" cols="5" id="contenidoCrear"></textarea>
+                <label for="fechaExpiracion">Fecha de expiracion</label>
+                <input type="month" id="fechaExpiracion">
+                </form>
+            </div>
+            
+        </div>
+        
+        <script src="js/menu.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
         <script type="text/javascript" src="js/libs/jquery-mobile/jquery.mobile-1.4.5.js "></script>
-        <script type="text/javascript" src="js/peticiones.js"></script>
+        <script type="text/javascript" src="js/eventos.js"></script>
     </body>
 </html>

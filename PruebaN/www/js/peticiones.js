@@ -1,107 +1,70 @@
-var url="https://torre3uam.herokuapp.com/usuario/login";
-var urlRegister="https://torre3uam.herokuapp.com/usuario/register";
+var urlLogin="http://libio.cua.uam.mx:8088/torre/usuario/test";
+var urlRegister="http://libio.cua.uam.mx:8088/torre/usuario/register";
+var deviceIdL;
 
-$( "#loginForm" ).on( "submit", function( event ) {
-  event.preventDefault();
-  var usrL=$("#usrL").val();
-  var pwdL=$("#pwdL").val();    
-    
-    $.ajax({
-        type       : "POST",
-        url        : url,
-        data       : {usr : usrL, pwd : pwdL },
-        success    : function(response) {
-            console.log(response);
-            console.log("funcion succes");
-        },
-        dataType: "json"
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady(){
+    deviceIdL=device.uuid;
+    alert('Device UUID: '+ deviceId);
+}
+$(function(){
+    localStorage.clear();
+    if(localStorage.getItem('token')!=null){
+        $.post(urlLogin, {token:localStorage.getItem('token'),deviceId:deviceIdL},function(result){
+            if(result==localStorage.getItem('token')){
+                $.mobile.changePage("#edificio");
+            }
+        });
+    }
+    $( "#loginForm" ).on( "submit", function( event ) {
+        event.preventDefault();
+
+        var usrL=$("#usrL").val();
+        var pwdL=$("#pwdL").val(); 
+
+        if($("#noCerrarLogin").is(':checked')){
+            console.log("is checked");
+            $.post(urlLogin, {usr:usrL,pwd:pwdL,deviceId:deviceIdL},function(result){
+                if(result=="error"){
+                    $("#letreroLogin").text="user o password incorrectos";
+                }else{
+                    localStorage.clear();
+                    localStorage.setItem("token",result);
+                    console.log(localStorage.getItem("token"));
+                    $("#letreroLogin").text="user o password incorrectos";
+                    $.mobile.changePage("#edificio");
+                }   
+            });
+        }else{
+            localStorage.clear();
+            //console.log("is no checked");
+            $.post(urlLogin,{usr:usrL,pwd:pwdL},function(result){
+                console.log("success");
+                if(result=="error"){
+                    $("#letreroLogin").text("user o password incorrectos");
+                }else{
+                    $.mobile.changePage("#edificio");
+                }
+            });
+            /*$.ajax({
+                url: urlLogin,
+                type: 'post',
+                data:{usr:usrL,pwd:pwdL},
+                success: function( data, textStatus, jQxhr ){
+                    //console.log("success");
+                    console.log(data);
+                    console.log(textStatus);
+                    console.log(jQxhr);
+                    $.mobile.changePage("#registerPage1");
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    //console.log("error");
+                    console.log( errorThrown );
+                    console.log(jqXhr);
+                    console.log(textStatus);
+                }
+            });*/
+            
+        }
     });
-$.mobile.changePage("#registerPage1");
-});
-$( "#registernForm4" ).on( "submit", function( event ) {
-  event.preventDefault();
-    var nombreV=$("#nombreRegister").val();
-    var matriculaV=$("#matriculaRegister").val();
-    var habilidadesV=$("#habilidadesRegister").val();
-    var serviciosV=$("#serviciosRegister").val();
-    var conocimientosV=$("#conocimientosRegister").val();
-    var interesesV=$("#interesesRegister").val();
-    
-    var correoV=$("#correoRegister").val();
-    var celularV=$("#celularRegister").val();
-    var proyectosPreviosV=$("#proyectosPreviosRegister").val();
-    var proyectosActualesV=$("#proyectosActualesRegister").val();
-    
-    var res=$.post( urlRegister, {nombre : nombreV, matricula : matriculaV,habilidades:habilidadesV,
-        servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
-            celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
-  
-$.mobile.changePage("#mainMenu");
-});
-//{usr : usrL, pwd : pwdL }
- 
-$(window).on("navigate", function(event, data) {
-  var direction = data.state.direction;
-  if (direction == 'back') {
-    console.log('Going back');
-  }
-  if (direction == 'forward') {
-    console.log('Going forward');
-  }
-});
-
-$("#registerPage1").on('click', '.showNextPage', function() {
-  $.mobile.navigate("#registerPage2", {
-    transition: "slide"
-  });
-});
-$("#registerPage1").on('click', '.showPrevPage', function() {
-  $.mobile.navigate("#principal", {
-    transition: "slide"
-  });
-});
-$("#registerPage2").on('click', '.showNextPage', function() {
-  $.mobile.navigate("#registerPage3", {
-    transition: "slide"
-  });
-});
-$("#registerPage2").on('click', '.showPrevPage', function() {
-  $.mobile.navigate("#registerPage1", {
-    transition: "slide"
-  });
-});
-$("#registerPage3").on('click', '.showNextPage', function() {
-  $.mobile.navigate("#registerPage4", {
-    transition: "slide"
-  });
-});
-$("#registerPage3").on('click', '.showPrevPage', function() {
-  $.mobile.navigate("#registerPage2", {
-    transition: "slide"
-  });
-});
-$("#registerPage4").on('click', '.showNextPage', function() {
-  $.mobile.navigate("#mainMenu", {
-    transition: "slide"
-  });
-    var nombreV=$("#nombreRegister").val();
-    var matriculaV=$("#matriculaRegister").val();
-    var habilidadesV=$("#habilidadesRegister").val();
-    var serviciosV=$("#serviciosRegister").val();
-    var conocimientosV=$("#conocimientosRegister").val();
-    var interesesV=$("#interesesRegister").val();
-    
-    var correoV=$("#correoRegister").val();
-    var celularV=$("#celularRegister").val();
-    var proyectosPreviosV=$("#proyectosPreviosRegister").val();
-    var proyectosActualesV=$("#proyectosActualesRegister").val();
-    
-    var res=$.post( urlRegister, {nombre : nombreV, matricula : matriculaV,habilidades:habilidadesV,
-        servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
-            celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
-});
-$("#registerPage4").on('click', '.showPrevPage', function() {
-  $.mobile.navigate("#registerPage3", {
-    transition: "slide"
-  });
 });
