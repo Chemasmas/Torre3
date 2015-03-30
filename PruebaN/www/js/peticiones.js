@@ -1,18 +1,38 @@
-var urlLogin="http://libio.cua.uam.mx:8088/torre/usuario/test";
-var urlRegister="http://libio.cua.uam.mx:8088/torre/usuario/register";
+var host="http://192.168.2.182:8085/Torre3Libio";
+var urlLogin="/usuario/login";
+var urlLogin2="/usuario/login2";
 var deviceIdL;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady(){
     deviceIdL=device.uuid;
-    alert('Device UUID: '+ deviceId);
+    //alert('Device UUID: '+ deviceId);
 }
 $(function(){
-    localStorage.clear();
-    if(localStorage.getItem('token')!=null){
-        $.post(urlLogin, {token:localStorage.getItem('token'),deviceId:deviceIdL},function(result){
-            if(result==localStorage.getItem('token')){
+    deviceIdL="POSTER";
+    //localStorage.clear();
+    console.log("Usr: "+localStorage.getItem('usr'));
+    console.log("Token: "+localStorage.getItem('token'));
+    if(localStorage.getItem('token')!=null&&localStorage.getItem('usr')!=null){
+        /*$.post(host+urlLogin2, {usr:localStorage.getItem('usr'),token:localStorage.getItem('token')},function(result){
+            if(result.tipo=="Exito"){
                 $.mobile.changePage("#edificio");
+                console.log("cargo...");
+                console.log(result);
+            }
+        });*/
+        $.ajax({
+            beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
+            complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
+            url: host+urlLogin2,
+            dataType: 'json',
+            headers: "I am good",
+            success: function(data) {
+                if(result.tipo=="Exito"){
+                    $.mobile.changePage("#edificio");
+                    console.log("cargo...");
+                    console.log(result);
+                }
             }
         });
     }
@@ -24,13 +44,14 @@ $(function(){
 
         if($("#noCerrarLogin").is(':checked')){
             console.log("is checked");
-            $.post(urlLogin, {usr:usrL,pwd:pwdL,deviceId:deviceIdL},function(result){
+            $.post(host+urlLogin, {usr:usrL,pwd:pwdL,uuid:deviceIdL},function(result){
                 if(result=="error"){
                     $("#letreroLogin").text="user o password incorrectos";
                 }else{
                     localStorage.clear();
-                    localStorage.setItem("token",result);
-                    console.log(localStorage.getItem("token"));
+                    localStorage.setItem("token",result.token);
+                    localStorage.setItem("usr",usrL);
+                    //console.log(localStorage.getItem("token"));
                     $("#letreroLogin").text="user o password incorrectos";
                     $.mobile.changePage("#edificio");
                 }   
@@ -38,9 +59,10 @@ $(function(){
         }else{
             localStorage.clear();
             //console.log("is no checked");
-            $.post(urlLogin,{usr:usrL,pwd:pwdL},function(result){
+            $.post(host+urlLogin,{usr:usrL,pwd:pwdL,uuid:deviceIdL},function(result){
                 console.log("success");
-                if(result=="error"){
+                console.log(result);
+                if(result.token==undefined){
                     $("#letreroLogin").text("user o password incorrectos");
                 }else{
                     $.mobile.changePage("#edificio");

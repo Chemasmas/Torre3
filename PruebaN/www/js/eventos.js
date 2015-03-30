@@ -1,4 +1,5 @@
-var urlRegister="https://torre3uam.herokuapp.com/usuario/register";
+var host="http://192.168.2.182:8085/Torre3Libio";
+var urlRegister="/usuario/register";
 
 $(window).on("navigate", function(event, data) {
     var direction = data.state.direction;
@@ -77,9 +78,6 @@ $("#registerPage3").on('click', '.showPrevPage', function() {
     });
 });
 $("#registerPage4").on('click', '.showNextPage', function() {
-    $.mobile.navigate("#mainMenu", {
-        transition: "slide"
-    });
     var nombreV=$("#nombreRegister").val();
     var apellidoV=$("#apellidoRegister").val();
     var matriculaV=$("#matriculaRegister").val();
@@ -98,9 +96,18 @@ $("#registerPage4").on('click', '.showNextPage', function() {
     var proyectosActualesV=$("#proyectosActualesRegister").val();
     
     nombreV=nombreV+apellidoV;
-    var res=$.post( urlRegister, {nombre : nombreV, matricula : matriculaV,habilidades:habilidadesV,
-        servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
-            celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
+    /*{usr:usuarioV,pwd:passwordV,nombre:nombreV,matricula:matriculaV,carrera:licenciaturaV,habilidades:habilidadesV,
+                                 servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,celular:celularV,proyectosPrevios:proyectosPreviosV,
+                                 proyectosActuales:proyectosActualesV}
+    */
+    $.post(host+urlRegister, {usr:"oswaldo",pwd:"password",nombre:"Oswaldo Cruz Simon",matricula:"2123065423",carrera:"Computacion",habilidades:"Skills",
+                                 servicios:"Services",conocimientos:"Solo se que no se nada",intereses:"intereses",celular:"5522605675",proyectosPrevios:"previos",
+                                 proyectosActuales:"Torre III"},function(result){
+            alert("registro completado");
+            $.mobile.navigate("#principal", {
+                transition: "slide"
+            });
+        });
 });
 $("#registerPage4").on('click', '.showPrevPage', function() {
         $.mobile.navigate("#registerPage3", {
@@ -108,21 +115,7 @@ $("#registerPage4").on('click', '.showPrevPage', function() {
     });
 });
 $( "#registernForm4" ).on( "submit", function( event ) {
-    event.preventDefault();
-    var nombreV=$("#nombreRegister").val();
-    var matriculaV=$("#matriculaRegister").val();
-    var habilidadesV=$("#habilidadesRegister").val();
-    var serviciosV=$("#serviciosRegister").val();
-    var conocimientosV=$("#conocimientosRegister").val();
-    var interesesV=$("#interesesRegister").val();
-    var correoV=$("#correoRegister").val();
-    var celularV=$("#celularRegister").val();
-    var proyectosPreviosV=$("#proyectosPreviosRegister").val();
-    var proyectosActualesV=$("#proyectosActualesRegister").val();
-    var res=$.post( urlRegister, {nombre : nombreV, matricula : matriculaV,habilidades:habilidadesV,
-                    servicios:serviciosV,conocimientos:conocimientosV,intereses:interesesV,correo:correoV,
-                        celular:celularV,proyectosPrevios:proyectosPreviosV,proyectosActuales:proyectosActualesV});
-    $.mobile.changePage("#mainMenu");
+   
 });
 $("#crearAnuncio").on('click', '.showNextPage', function() {
         $.mobile.navigate("#edificio", {
